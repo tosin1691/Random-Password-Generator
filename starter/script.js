@@ -203,12 +203,7 @@ let finalcharacterTypeNumeric = parseInt(characterTypeNumeric)
 let finalcharacterTypeSpecial = parseInt(characterTypeSpecial)
 let finalcharacterTypeRandom = finalPasswordLength - (finalcharacterTypeLowercase + finalcharacterTypeUppercase + finalcharacterTypeNumeric + finalcharacterTypeSpecial)
 
-console.log(finalPasswordLength)
-console.log(finalcharacterTypeLowercase)
-console.log(finalcharacterTypeUppercase)
-console.log(finalcharacterTypeNumeric)
-console.log(finalcharacterTypeSpecial)
-console.log(finalcharacterTypeRandom)
+
 
 
 
@@ -220,7 +215,6 @@ function getRandom(arr) {
 
 }
 
-console.log(getRandom(specialCharacters))
 
 // Function to generate password with user input
 function generatePassword(characterLength, arr) {
@@ -234,12 +228,11 @@ function generatePassword(characterLength, arr) {
 return randomPassword
 }
 
-console.log(generatePassword(finalcharacterTypeSpecial, specialCharacters))
 
 
 
 // Get references to the #generate element
-var generateBtn = document.querySelector('#generate');
+let generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
 function writePassword() {
@@ -252,13 +245,11 @@ sortPassword.sort(function(a, b){
   return 0.5 - Math.random()
 })
 
-console.log(sortPassword)
-
 let finalPassword = sortPassword.join('')
 
-console.log(finalPassword)
 
-var passwordText = document.querySelector('#password')
+
+let passwordText = document.querySelector('#password')
 
   passwordText.value = finalPassword
 }
