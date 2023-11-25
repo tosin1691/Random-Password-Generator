@@ -112,7 +112,7 @@ function getPasswordOptions() {
     
     if ((passwordLength === null) || (passwordLengthAsNumber < minPasswordLength) || (passwordLengthAsNumber > maxPasswordLength)) {
       alert ("Incorrect input. Password length must be at least 8 characters but no more than 128")
-    } else if (isNaN(parseInt(passwordLengthAsNumber))){
+    } else if (isNaN(passwordLengthAsNumber)){
       alert ("Incorrect input. This field accepts numeric values only i.e. input 10 if you want the length of your password to be 10 character long")
     } else {
       while(passwordLengthAsNumber >= minPasswordLength || passwordLengthAsNumber <= maxPasswordLength) {
@@ -123,7 +123,7 @@ function getPasswordOptions() {
 
          if (characterTypeLowercase === null || (characterTypeLowercaseAsNumber < minCharacterTypeLength)) {
           alert ("Incorrect input. Your password must contain at least one lowercase character i.e. input 1 if you want 1 lowercase character included in your password")
-        } else if (isNaN(parseInt(characterTypeLowercaseAsNumber))) {
+        } else if (isNaN(characterTypeLowercaseAsNumber)) {
           alert ("Incorrect input. This field accepts numeric values only i.e. input 1 if you want 1 lowercase character included in your password")
         } else if (characterTypeLowercaseAsNumber > (passwordLengthAsNumber - minusAmount)) {
           alert ("Incorrect input. Your input cannot be greater than: " + (passwordLengthAsNumber - minusAmount))
@@ -136,7 +136,7 @@ function getPasswordOptions() {
 
            if ( characterTypeUppercase === null || (characterTypeUppercaseAsNumber < minCharacterTypeLength)) {
               alert ("Incorrect input. Your password must contain at least one uppercase character i.e. input 1 if you want 1 uppercase character included in your password")
-            } else if (isNaN(parseInt(characterTypeUppercaseAsNumber))) {
+            } else if (isNaN(characterTypeUppercaseAsNumber)) {
               alert ("Incorrect input. This field accepts numeric values only i.e. input 1 if you want 1 uppercase character included in your password")
             } else if(characterTypeUppercaseAsNumber > (passwordLengthAsNumber - (characterTypeLowercaseAsNumber + 2))) {
               alert ("Incorrect input. Your input cannot be greater than: " + (passwordLengthAsNumber - (characterTypeLowercaseAsNumber + 2)))
@@ -150,7 +150,7 @@ function getPasswordOptions() {
 
                if (characterTypeNumeric === null || (characterTypeNumericAsNumber < minCharacterTypeLength)) {
                   alert ("incorrect input. Your password must contain at least one numeric character i.e. input 1 if you want 1 numeric character included in your password")
-                } else if (isNaN(parseInt(characterTypeNumericAsNumber))) {
+                } else if (isNaN(characterTypeNumericAsNumber)) {
                   alert ("Incorrect input. This field accepts numeric values only i.e. input 1 if you want 1 numeric character included in your password")
                 } else if (characterTypeNumericAsNumber > (passwordLengthAsNumber - (characterTypeLowercaseAsNumber + characterTypeUppercaseAsNumber + 1))){
                   alert ("Incorrect input. Your input cannot be greater than: " + (passwordLengthAsNumber - (characterTypeLowercaseAsNumber + characterTypeUppercaseAsNumber + 1)))
@@ -164,7 +164,7 @@ function getPasswordOptions() {
                     
                   if (characterTypeSpecial === null || (characterTypeSpecialAsNumber < minCharacterTypeLength)) {
                       alert ("incorrect input. Your password must contain at least one special character i.e. input 1 if you want 1 special character included in your password")
-                    } else if (isNaN(parseInt(characterTypeSpecialAsNumber))) {
+                    } else if (isNaN(characterTypeSpecialAsNumber)) {
                       alert ("Incorrect input. This field accepts numeric values only i.e. input 1 if you want 1 special character included in your password")
                     } else if (characterTypeSpecialAsNumber > (passwordLengthAsNumber - (characterTypeLowercaseAsNumber + characterTypeUppercaseAsNumber + characterTypeNumericAsNumber))) {
                       alert ("Incorrect input. Your input cannot be greater than: " + (passwordLengthAsNumber - (characterTypeLowercaseAsNumber + characterTypeUppercaseAsNumber + characterTypeNumericAsNumber)))
