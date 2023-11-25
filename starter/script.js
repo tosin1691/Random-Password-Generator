@@ -223,20 +223,47 @@ function getRandom(arr) {
 console.log(getRandom(specialCharacters))
 
 // Function to generate password with user input
-function generatePassword() {
+function generatePassword(characterLength, arr) {
+  let randomPassword = ""
 
+  for (i = 0; i < characterLength; i++) {
+  
+      randomPassword += getRandom(arr)
+     
+  }
+return randomPassword
 }
+
+console.log(generatePassword(finalcharacterTypeSpecial, specialCharacters))
+
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector('#password');
 
-  passwordText.value = password;
+  let password = generatePassword(finalcharacterTypeSpecial, specialCharacters) + generatePassword(finalcharacterTypeNumeric, numericCharacters) + generatePassword(finalcharacterTypeLowercase, lowerCasedCharacters) + generatePassword(finalcharacterTypeUppercase, upperCasedCharacters) + generatePassword(finalcharacterTypeRandom, allCharacters)
+
+let sortPassword = password.split('')
+
+sortPassword.sort(function(a, b){
+  return 0.5 - Math.random()
+})
+
+console.log(sortPassword)
+
+let finalPassword = sortPassword.join('')
+
+console.log(finalPassword)
+
+var passwordText = document.querySelector('#password')
+
+  passwordText.value = finalPassword
 }
+
+writePassword()
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
