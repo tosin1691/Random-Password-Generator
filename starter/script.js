@@ -196,11 +196,31 @@ function getPasswordOptions() {
 
 getPasswordOptions()
 
+let finalPasswordLength = parseInt(passwordLength)
+let finalcharacterTypeLowercase = parseInt(characterTypeLowercase)
+let finalcharacterTypeUppercase = parseInt(characterTypeUppercase)
+let finalcharacterTypeNumeric = parseInt(characterTypeNumeric)
+let finalcharacterTypeSpecial = parseInt(characterTypeSpecial)
+let finalcharacterTypeRandom = finalPasswordLength - (finalcharacterTypeLowercase + finalcharacterTypeUppercase + finalcharacterTypeNumeric + finalcharacterTypeSpecial)
+
+console.log(finalPasswordLength)
+console.log(finalcharacterTypeLowercase)
+console.log(finalcharacterTypeUppercase)
+console.log(finalcharacterTypeNumeric)
+console.log(finalcharacterTypeSpecial)
+console.log(finalcharacterTypeRandom)
+
+
+
 
 // Function for getting a random element from an array
 function getRandom(arr) {
+  let randomCharacters = Math.floor(Math.random() * arr.length)
+  return arr[randomCharacters]
 
 }
+
+console.log(getRandom(specialCharacters))
 
 // Function to generate password with user input
 function generatePassword() {
