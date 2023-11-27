@@ -95,6 +95,11 @@ let characterTypeLowercase
 let characterTypeUppercase
 let characterTypeNumeric 
 let characterTypeSpecial
+let passwordLengthAsNumber
+let characterTypeLowercaseAsNumber //y
+let characterTypeUppercaseAsNumber
+let characterTypeNumericAsNumber
+let characterTypeSpecialAsNumber
 let maxPasswordLength = 128
 let minPasswordLength = 8
 let minusAmount = 3
@@ -108,7 +113,7 @@ function getPasswordOptions() {
 
     passwordLength = prompt("Input the length of your password (must be at least 8 characters but no more than 128).")
     
-    let passwordLengthAsNumber = parseInt(passwordLength)
+    passwordLengthAsNumber = parseInt(passwordLength)
     
     if ((passwordLength === null) || (passwordLengthAsNumber < minPasswordLength) || (passwordLengthAsNumber > maxPasswordLength)) {
       alert ("Incorrect input. Password length must be at least 8 characters but no more than 128")
@@ -119,7 +124,7 @@ function getPasswordOptions() {
         
         characterTypeLowercase = prompt("Input the number of lowercase characters you want in your password (your password must contain at least one). Input numeric values only i.e. input 1 if you want 1 lowercase character included in your password")
 
-        let characterTypeLowercaseAsNumber = parseInt(characterTypeLowercase)
+        characterTypeLowercaseAsNumber = parseInt(characterTypeLowercase)
 
          if (characterTypeLowercase === null || (characterTypeLowercaseAsNumber < minCharacterTypeLength)) {
           alert ("Incorrect input. Your password must contain at least one lowercase character i.e. input 1 if you want 1 lowercase character included in your password")
@@ -132,7 +137,7 @@ function getPasswordOptions() {
 
             characterTypeUppercase = prompt("Input the number of uppercase characters you want in your password (your password must contain at least one). Input numeric values only i.e. type 1 if you want 1 uppercase character included in your password")
 
-            let characterTypeUppercaseAsNumber = parseInt(characterTypeUppercase)
+            characterTypeUppercaseAsNumber = parseInt(characterTypeUppercase)
 
            if ( characterTypeUppercase === null || (characterTypeUppercaseAsNumber < minCharacterTypeLength)) {
               alert ("Incorrect input. Your password must contain at least one uppercase character i.e. input 1 if you want 1 uppercase character included in your password")
@@ -146,7 +151,7 @@ function getPasswordOptions() {
                 
                 characterTypeNumeric = prompt("Input the number of numeric characters you want in your password (your password must contain at least one). Input numeric values only i.e. input 1 if you want 1 numeric character included in your password")
 
-                let characterTypeNumericAsNumber = parseInt(characterTypeNumeric)
+                characterTypeNumericAsNumber = parseInt(characterTypeNumeric)
 
                if (characterTypeNumeric === null || (characterTypeNumericAsNumber < minCharacterTypeLength)) {
                   alert ("incorrect input. Your password must contain at least one numeric character i.e. input 1 if you want 1 numeric character included in your password")
@@ -160,7 +165,7 @@ function getPasswordOptions() {
 
                     characterTypeSpecial = prompt("Choose the number of special characters you want in your password (your password must contain at least one). Input numeric values only i.e. type 1 if you want 1 special character included in your password")
                     
-                    let characterTypeSpecialAsNumber = parseInt(characterTypeSpecial)
+                    characterTypeSpecialAsNumber = parseInt(characterTypeSpecial)
                     
                   if (characterTypeSpecial === null || (characterTypeSpecialAsNumber < minCharacterTypeLength)) {
                       alert ("incorrect input. Your password must contain at least one special character i.e. input 1 if you want 1 special character included in your password")
@@ -183,7 +188,7 @@ function getPasswordOptions() {
         }
       }
 
-        break
+      break
       
     }
 
@@ -196,12 +201,8 @@ function getPasswordOptions() {
 
 getPasswordOptions()
 
-let finalPasswordLength = parseInt(passwordLength)
-let finalcharacterTypeLowercase = parseInt(characterTypeLowercase)
-let finalcharacterTypeUppercase = parseInt(characterTypeUppercase)
-let finalcharacterTypeNumeric = parseInt(characterTypeNumeric)
-let finalcharacterTypeSpecial = parseInt(characterTypeSpecial)
-let finalcharacterTypeRandom = finalPasswordLength - (finalcharacterTypeLowercase + finalcharacterTypeUppercase + finalcharacterTypeNumeric + finalcharacterTypeSpecial)
+
+let characterTypeRandom = passwordLengthAsNumber - (characterTypeLowercaseAsNumber + characterTypeUppercaseAsNumber + characterTypeNumericAsNumber + characterTypeSpecialAsNumber)
 
 
 
@@ -237,7 +238,7 @@ let generateBtn = document.querySelector('#generate');
 // Write password to the #password input
 function writePassword() {
 
-  let password = generatePassword(finalcharacterTypeSpecial, specialCharacters) + generatePassword(finalcharacterTypeNumeric, numericCharacters) + generatePassword(finalcharacterTypeLowercase, lowerCasedCharacters) + generatePassword(finalcharacterTypeUppercase, upperCasedCharacters) + generatePassword(finalcharacterTypeRandom, allCharacters)
+  let password = generatePassword(characterTypeSpecialAsNumber, specialCharacters) + generatePassword(characterTypeNumericAsNumber, numericCharacters) + generatePassword(characterTypeLowercaseAsNumber, lowerCasedCharacters) + generatePassword(characterTypeUppercaseAsNumber, upperCasedCharacters) + generatePassword(characterTypeRandom, allCharacters)
 
 let sortPassword = password.split('')
 
