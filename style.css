@@ -54,8 +54,16 @@ header {
   min-height: 100px;
 }
 
-.card-footer {
+.card-footer, h3, p {
   text-align: center;
+}
+
+span {
+  display: inline;
+}
+
+#input-header {
+  font-weight: bold;
 }
 
 .card-footer::before {

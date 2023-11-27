@@ -106,30 +106,54 @@ let minusAmount = 3
 let minCharacterTypeLength = 1
 let continueRunning = true
 
+//Function to validate users input
+function isInValidInput (usersInput, minLength, maxLength){
+
+  if (usersInput === null) {
+    return true
+  } 
+  
+  let usersInputAsNumber = Number(usersInput) 
+
+  if ((usersInputAsNumber < minLength) || (usersInputAsNumber > maxLength)) {
+    return true
+  }
+
+  if (maxLength !== undefined && usersInputAsNumber > maxLength) {
+    return true
+  }
+
+  return false
+  // (passwordLength === null) || (passwordLengthAsNumber < minPasswordLength) 
+}
+
+
+
 
 // Function to prompt user for password options. Inside the function I used a While loop and nested while loop to prompt users to enter preferred criteria for their password before it is generated. The loop breaks completely once criteria has been inputted as required
 function getPasswordOptions() {
 
   while (continueRunning) {
 
-    //The below uses a series of prompt method to prompt users to enter the length of password. Also utilised the use of if statements, which generates an alert if user's inputs is invalid. User will only be able progress at each loop once input is valid. 
+    //The below uses a series of prompt method to prompt users to enter the length of password. Also utilised the use of if statements, which generates an alert if user's inputs is invalid. User will only be able progress at each loop once input becomes valid. 
 
     passwordLength = prompt("Input the length of your password (must be at least 8 characters but no more than 128).")
     
-    passwordLengthAsNumber = parseInt(passwordLength)
+    passwordLengthAsNumber = Number(passwordLength)
     
-    if ((passwordLength === null) || (passwordLengthAsNumber < minPasswordLength) || (passwordLengthAsNumber > maxPasswordLength)) {
-      alert ("Incorrect input. Password length must be at least 8 characters but no more than 128")
-    } else if (isNaN(passwordLengthAsNumber)){
+    console.log(passwordLengthAsNumber)
+    // if ((passwordLength === null) || (passwordLengthAsNumber < minPasswordLength) || (passwordLengthAsNumber > maxPasswordLength)) {
+      // alert ("Incorrect input. Password length must be at least 8 characters but no more than 128")
+     if (isInValidInput(passwordLength, minPasswordLength, maxPasswordLength) || isNaN(passwordLengthAsNumber)){
       alert ("Incorrect input. This field accepts numeric values only i.e. input 10 if you want the length of your password to be 10 character long")
     } else {
       while(passwordLengthAsNumber >= minPasswordLength || passwordLengthAsNumber <= maxPasswordLength) {
         
         characterTypeLowercase = prompt("Input the number of lowercase characters you want in your password (your password must contain at least one). Input numeric values only i.e. input 1 if you want 1 lowercase character included in your password")
 
-        characterTypeLowercaseAsNumber = parseInt(characterTypeLowercase)
+        characterTypeLowercaseAsNumber = Number(characterTypeLowercase)
 
-         if (characterTypeLowercase === null || (characterTypeLowercaseAsNumber < minCharacterTypeLength)) {
+         if (isInValidInput(characterTypeLowercase, minCharacterTypeLength)) {
           alert ("Incorrect input. Your password must contain at least one lowercase character i.e. input 1 if you want 1 lowercase character included in your password")
         } else if (isNaN(characterTypeLowercaseAsNumber)) {
           alert ("Incorrect input. This field accepts numeric values only i.e. input 1 if you want 1 lowercase character included in your password")
@@ -140,9 +164,9 @@ function getPasswordOptions() {
 
             characterTypeUppercase = prompt("Input the number of uppercase characters you want in your password (your password must contain at least one). Input numeric values only i.e. type 1 if you want 1 uppercase character included in your password")
 
-            characterTypeUppercaseAsNumber = parseInt(characterTypeUppercase)
+            characterTypeUppercaseAsNumber = Number(characterTypeUppercase)
 
-           if ( characterTypeUppercase === null || (characterTypeUppercaseAsNumber < minCharacterTypeLength)) {
+           if (isInValidInput(characterTypeUppercase, minCharacterTypeLength)) {
               alert ("Incorrect input. Your password must contain at least one uppercase character i.e. input 1 if you want 1 uppercase character included in your password")
             } else if (isNaN(characterTypeUppercaseAsNumber)) {
               alert ("Incorrect input. This field accepts numeric values only i.e. input 1 if you want 1 uppercase character included in your password")
@@ -154,9 +178,9 @@ function getPasswordOptions() {
                 
                 characterTypeNumeric = prompt("Input the number of numeric characters you want in your password (your password must contain at least one). Input numeric values only i.e. input 1 if you want 1 numeric character included in your password")
 
-                characterTypeNumericAsNumber = parseInt(characterTypeNumeric)
+                characterTypeNumericAsNumber = Number(characterTypeNumeric)
 
-               if (characterTypeNumeric === null || (characterTypeNumericAsNumber < minCharacterTypeLength)) {
+               if (isInValidInput(characterTypeNumeric, minCharacterTypeLength)) {
                   alert ("incorrect input. Your password must contain at least one numeric character i.e. input 1 if you want 1 numeric character included in your password")
                 } else if (isNaN(characterTypeNumericAsNumber)) {
                   alert ("Incorrect input. This field accepts numeric values only i.e. input 1 if you want 1 numeric character included in your password")
@@ -166,11 +190,11 @@ function getPasswordOptions() {
                   
                   while (characterTypeNumericAsNumber >= minCharacterTypeLength) {
 
-                    characterTypeSpecial = prompt("Choose the number of special characters you want in your password (your password must contain at least one). Input numeric values only i.e. type 1 if you want 1 special character included in your password")
+                    characterTypeSpecial = prompt("Choose the number of special characters you want in your password (your password must contain at least one). Input numeric values only i.e. type 1 if you want 1 special character included in your password. Examples of special charaters include: !#$%&'()*+,-./:;<=>?@[\]^_`{|}~")
                     
-                    characterTypeSpecialAsNumber = parseInt(characterTypeSpecial)
+                    characterTypeSpecialAsNumber = Number(characterTypeSpecial)
                     
-                  if (characterTypeSpecial === null || (characterTypeSpecialAsNumber < minCharacterTypeLength)) {
+                  if (isInValidInput(characterTypeSpecial, minCharacterTypeLength)) {
                       alert ("incorrect input. Your password must contain at least one special character i.e. input 1 if you want 1 special character included in your password")
                     } else if (isNaN(characterTypeSpecialAsNumber)) {
                       alert ("Incorrect input. This field accepts numeric values only i.e. input 1 if you want 1 special character included in your password")
@@ -239,6 +263,15 @@ return randomPassword
 // Get references to the #generate element
 let generateBtn = document.querySelector('#generate');
 
+let passwordLengthInputted = document.querySelector('#password-length')
+let lowercaseInputted = document.querySelector('#char-lowercase')
+let uppercaseInputted = document.querySelector('#char-uppercase')
+let numericInputted = document.querySelector('#char-numeric')
+let specialInputted = document.querySelector('#char-special')
+
+
+
+
 // Write password to the #password input
 function writePassword() {
 
@@ -260,6 +293,12 @@ function writePassword() {
 
     //the below displays the password in the brower
     passwordText.value = finalPassword
+
+    passwordLengthInputted.textContent = passwordLength
+    lowercaseInputted.textContent = characterTypeLowercase
+    uppercaseInputted.textContent = characterTypeUppercase
+    numericInputted.textContent = characterTypeNumeric
+    specialInputted.textContent = characterTypeSpecial
 }
 
 writePassword()
