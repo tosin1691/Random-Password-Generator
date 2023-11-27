@@ -107,9 +107,12 @@ let minCharacterTypeLength = 1
 let continueRunning = true
 
 
-// Function to prompt user for password options
+// Function to prompt user for password options. Inside the function I used a While loop and nested while loop to prompt users to enter preferred criteria for their password before it is generated. The loop breaks completely once criteria has been inputted as required
 function getPasswordOptions() {
+
   while (continueRunning) {
+
+    //The below uses a series of prompt method to prompt users to enter the length of password. Also utilised the use of if statements, which generates an alert if user's inputs is invalid. User will only be able progress at each loop once input is valid. 
 
     passwordLength = prompt("Input the length of your password (must be at least 8 characters but no more than 128).")
     
@@ -199,9 +202,10 @@ function getPasswordOptions() {
 
 }
 
+// the below calls the getPasswordOptions function displayed above
 getPasswordOptions()
 
-
+// new variable to identify the password character length remaining once options has been validated via the prompt. 
 let characterTypeRandom = passwordLengthAsNumber - (characterTypeLowercaseAsNumber + characterTypeUppercaseAsNumber + characterTypeNumericAsNumber + characterTypeSpecialAsNumber)
 
 
@@ -238,21 +242,24 @@ let generateBtn = document.querySelector('#generate');
 // Write password to the #password input
 function writePassword() {
 
+  //the below calling the generatePassword, passing in inputs by users and relevant characters array as argument. It also adds all this together to make a single string.  
   let password = generatePassword(characterTypeSpecialAsNumber, specialCharacters) + generatePassword(characterTypeNumericAsNumber, numericCharacters) + generatePassword(characterTypeLowercaseAsNumber, lowerCasedCharacters) + generatePassword(characterTypeUppercaseAsNumber, upperCasedCharacters) + generatePassword(characterTypeRandom, allCharacters)
 
-let sortPassword = password.split('')
+  // the below splits the individual characters generated in the password variable into an array which each character as its own element.
+  let splitPassword = password.split('')
 
-sortPassword.sort(function(a, b){
-  return 0.5 - Math.random()
-})
+  // this below sorts the splitPassword at random
+  let sortPassword = splitPassword.sort(function(a, b){
+    return 0.5 - Math.random()
+  })
 
-let finalPassword = sortPassword.join('')
+  // the below joins the sorted array from the sortPassword variable to a string
+  let finalPassword = sortPassword.join('')
 
+  let passwordText = document.querySelector('#password')
 
-
-let passwordText = document.querySelector('#password')
-
-  passwordText.value = finalPassword
+    //the below displays the password in the brower
+    passwordText.value = finalPassword
 }
 
 writePassword()
