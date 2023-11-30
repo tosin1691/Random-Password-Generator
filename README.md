@@ -2,7 +2,7 @@
 
 
 ## Description
-Built a random password generator based on selected criteria by the user. 
+This is a random password generator based on selected criteria by the user. Users will be prompt to choose options for their password (i.e. password length) and the password must contain at least 1 Lowercase, Uppercase, Numeric and Special characters.  The app was built using HTML, CSS and JavaScript.
 
 
 
